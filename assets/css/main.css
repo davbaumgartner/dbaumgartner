@@ -1,0 +1,81 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster|Alike|Source+Code+Pro|Titillium+Web);
+
+html, body {
+	margin: 0.01em;
+	padding: 0.01em;
+	width: 100%;
+	height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Lobster', cursive;
+}
+p, blockquote {
+	font-family: 'Titillium Web', sans-serif;
+}
+
+pre {
+	font-family: 'Source Code Pro', sans-serif;
+}
+
+span.big {
+	font-family: 'Lobster', cursive;
+	font-size: 150%;
+}
+
+span.right {
+	display: block;
+	text-align: right;
+	margin-right: 100px;
+	line-height: 105%;
+}
+
+.pageblock {
+	margin: 0.01em;
+	padding: 0.01em;
+	text-align: right;
+}
+.pageblock > img {
+	float: right;
+	margin-right: 100px;
+}
+.pageblock > *:not(img) {
+	text-align: left;
+}
+
+.pageblock header {
+	position: relative;
+	left: 15%;
+	top: 50px;
+	width: 500px;
+	color: white;
+}
+
+.pageblock header h1 {
+	line-height: 90%;
+	text-align: right;
+	font-size: 400%;
+}
+
+.pageblock div.iindex {
+	clear: right;
+	border-top: dashed white 1px;
+	border-bottom: dashed white 1px;
+	padding: 0px;
+	margin-bottom: 40px;
+}
+.pageblock div.iindex ul {
+	margin: 0.01em;
+	padding: 0.01em;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+.pageblock div.iindex ul li {
+	transition:opacity linear 100ms;
+	display: inline;
+	opacity: 0.4;
+}
+.pageblock div.iindex ul li:hover {
+	opacity:1;
+}

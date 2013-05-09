@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="David Baumgartner, site de photographie, design, geek, actualités, oiseaux" />
+		<title>David Baumgartner</title>
+		<style type="text/css">
+		html, body {
+			margin: 0.01em;
+			padding: 0.01em;
+			height:100%;
+			background-color: black;
+			font-family: Futura, Arial, Helvetica, sans-serif;
+		}
+		body > h1 {
+			display: none;
+		}
+		.page.frame {
+			margin: 0.01em;
+			padding: 0.01em;
+			height: 100%;
+			color: white;
+			background-repeat: no-repeat;
+			overflow: hidden;
+		}
+		.page.frame.vertical {
+			background-size: auto 100%;
+			background-position: 80% 0px;
+		}
+		.page.frame.horizontal {
+			background-size: cover;
+		}
+		.page.frame > div.content {
+			margin-top: 15%;
+			margin-left: 10%;
+			width: 35%;
+			text-align: right;
+		}
+		.page.frame > div.content > h1 {
+			margin: 0px;
+		}
+		.page.frame > div.content > blockquote, .page.frame > div.content > p {
+
+		}
+		.page.frame.first > div.content {
+			width: 45%;
+		}
+		.page.frame.first > div.content > blockquote {
+			width: 50%;
+			margin-right: 0px;
+		}
+		.page.frame.first h1 {
+			font-size: 87pt;
+			line-height: 75pt;
+		}
+		nav {
+			margin: 0.01em;
+			padding: 0.01em;
+			position: fixed;
+			left: 0px;
+			top: 50px;
+		}
+		nav > ul {
+			margin: 0px;
+			padding: 0px;
+		}
+		nav > ul > li > a {
+			display: inline-block;
+			background-color: white;
+			color: black;
+			text-decoration: none;
+			font-variant: small-caps;
+			margin-bottom: 5px;
+			padding-top: 1px;
+			padding-bottom: 0px;
+			padding-right: 10px;	
+			padding-left: 2px;
+			transition: padding-right 200ms linear	;
+		}
+		nav > ul > li > a:hover {
+			padding-right: 30px;
+		}
+		blockquote {
+			margin: 0px;
+			padding: 0px;
+			text-align: justify;
+		}
+		blockquote > p::before {
+			content: '« ';
+		}
+		blockquote > p::after {
+			content: ' »';
+		}
+		</style>
+	</head>
+
+	<body>
+		<h1>David Baumgartner - Photographie</h1>
+		<nav class="navigation">
+			<ul>
+				<li><a href="/c/home">Home</a></li>
+				<li><a href="/c/artistique">Artistique</a></li>
+				<li><a href="/c/vegetaux">Végétaux</a></li>
+				<li><a href="/c/oiseaux">Oiseaux</a></li>
+				<li><a href="/c/animal">Animaux</a></li>
+				<li><a href="/c/divers">Divers</a></li>
+				<li><a href="/c/paysage">Paysage</a></li>
+				<li><a href="/c/mayotte">Mayotte</a></li>
+				<li><a href="/c/bretagne">Bretagne</a></li>
+				<li><a href="/c/camargue">Camargue</a></li>
+			</ul>
+		</nav>
+		<section class="page frame first vertical" data-image="http://i.imgur.com/ia20r9p.jpg" data-agv="000000" id="home">
+			<div class="content">
+				<h1>David Baumgartner</h1>
+				<blockquote><p>Photographier, c'est capturer l'instant présent, sans rien n'y ajouter&nbsp;; et sans rien n'y soustraire. Juste l'emprisonner à jamais en une image.</p></blockquote>
+			</div>
+		</section>
+		<section class="page frame horizontal" data-image="http://i.imgur.com/2kV3yzc.jpg" id="oiseaux">
+			<div class="content">
+				<h1>Oiseaux</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+		</section>
+		<script type="text/javascript">
+		var images = document.querySelectorAll('.page.frame'),
+			links = document.querySelectorAll('.navigation a'),
+			i = 0;
+		for(i = 0; i < images.length; i += 1) {
+			(images[i]).style.backgroundImage = "url("+(images[i]).getAttribute('data-image')+")";
+			(images[i]).style.backgroundColor = "#"+(images[i]).getAttribute('data-arv');
+		}
+		for(i = 0; i < links.length; i += 1) {
+			(links[i]).setAttribute('href', (links[i]).getAttribute('href').replace('/c/','#'));
+			(links[i]).addEventListener('click', fadeOnClick, true);
+		}
+		function fadeOnClick(e) {
+			target = this.getAttribute('href');
+			trg = document.querySelector(target);
+			function scrollTo(current, max) {
+				console.log(current,max,trg);
+				window.scrollTo(0,current);
+				if (Math.abs(max-current) > 50) {
+					a = (current < max)?1:(-1);
+					setTimeout(scrollTo, 1, current+80*a, max);
+				}
+				else {
+					window.scrollTo(0, max);
+				}
+			}
+			scrollTo(window.scrollY, trg.offsetTop);
+			location.target = target;
+			history.pushState({}, trg.getElementsByTagName('h1')[0].innerHTML, target);
+			e.preventDefault();
+			return false;
+		}
+		</script>
+	</body>
+</html>
