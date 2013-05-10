@@ -38,6 +38,7 @@
 		}
 		.page.frame:not(.first) > div.content {
 			padding: 30px;
+			margin-bottom: 50px;	
 		}
 		.page.frame > div.content > h1 {
 			font-size: 300%;
@@ -46,12 +47,15 @@
 		.page.frame:not(.first) > div.content > h1 {
 			float: right;
 			padding-left: 20px;
+			padding-top: 8px;
 			margin-bottom: 20px;
 		}
 		.page.frame:not(.first) > div.content > p {
 			text-align: right;
 		}
-		.page.frame:not(.first) > div.content > div.image.list ul {
+		.page.frame > div.content > div.image.list {
+		}
+		.page.frame > div.content > div.image.list ul {
 			margin: 0px;
 			padding: 0px;
 			white-space: nowrap;
@@ -101,6 +105,7 @@
 		}
 		nav > ul > li > a:hover {
 			padding-right: 30px;
+			background-color: rgba(200,255,255,0.5);
 		}
 		blockquote {
 			margin: 0px;
@@ -113,11 +118,87 @@
 		blockquote > p::after {
 			content: ' »';
 		}
+		@media screen and (max-width: 1280px) { 
+			.page.frame:not(.first) > div.content > h1 {
+				float: none;
+			}
+		}
+		@media screen and (max-width: 768px) {
+			nav {
+				position: fixed;
+				top: 0px;
+			}
+			nav > ul {
+				text-align: center;
+				background-color: white;
+			}
+			nav > ul > li, nav > ul > li > a {
+				width: auto;
+				display: inline;
+				text-align: center;
+			}
+			nav > ul > li > a { padding: 4px; background-color: transparent;}
+			nav > ul > li > a:hover {
+				padding-right: 4px;
+				background-color: transparent;
+				font-style: italic;
+				font-weight: bold;
+			}
+			.page.frame.first > div.content > blockquote {
+				width: 100%;
+			}
+		}
+		@media screen and (max-width: 612px) {
+			body > h1 {
+				background-color: rgb(50,50,50);
+				color: white;
+				display: block;
+				text-align: center;
+				width: 100%;
+				margin: 0.01em;
+				padding: 0.01em;
+			}
+			nav {
+				position: static;
+			}
+			nav > ul > li {
+				display: block;
+			}
+			nav > ul > li > a {
+				display: block;
+				background-color: rgb(50,50,50);
+				color: white;
+				text-align: center;
+				padding-top: 6px;
+				padding-bottom: 4px;
+				margin-bottom: 0px;
+				width: 100%;
+				border-top: solid 1px black;
+			}
+			nav > ul > li > a:hover {
+				background-color: white;
+				color: black;
+				padding-right: auto;
+			}
+			.page.frame {
+
+				background-position: bottom;
+				background-size: auto 100% ;
+			}
+			.page.frame > div.content, .page.frame.first > div.content {
+				margin-top: 0px;
+				margin-left: 0px;
+				width: auto;
+				text-align: right;
+				background-color: gray;
+				padding: 20px;
+			}
+		}
 		</style>
 	</head>
 
 	<body>
-		<h1>David Baumgartner - Photographie</h1>
+		<h1>David Baumgartner</h1>
 		<nav class="navigation">
 			<ul>
 				<li><a href="/c/home">Home</a></li>
@@ -159,9 +240,18 @@
 		<script type="text/javascript">
 		var images = document.querySelectorAll('.page.frame'),
 			links = document.querySelectorAll('.navigation a'),
+			scnWidth = window.innerWidth || document.body.clientWidth || document.documentElement.clientWidth;
 			i = 0;
 		for(i = 0; i < images.length; i += 1) {
-			(images[i]).style.backgroundImage = "url("+(images[i]).getAttribute('data-image')+")";
+			if (scnWidth > 612) {
+				(images[i]).style.backgroundImage = "url("+(images[i]).getAttribute('data-image')+")";
+			}
+			else {
+				var img = document.createElement('img');
+				img.setAttribute('src',(images[i]).getAttribute('data-image'));
+				img.setAttribute('width', scnWidth);
+				(images[i]).appendChild(img)
+			}
 			(images[i]).style.backgroundColor = "#"+(images[i]).getAttribute('data-arv');
 		}
 		for(i = 0; i < links.length; i += 1) {
@@ -172,7 +262,6 @@
 			target = this.getAttribute('href');
 			trg = document.querySelector(target);
 			function scrollTo(current, max) {
-				console.log(current,max,trg);
 				window.scrollTo(0,current);
 				if (Math.abs(max-current) > 50) {
 					a = (current < max)?1:(-1);
