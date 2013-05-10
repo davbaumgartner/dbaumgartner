@@ -18,10 +18,9 @@
 		.page.frame {
 			margin: 0.01em;
 			padding: 0.01em;
-			height: 100%;
+			min-height: 100%;
 			color: white;
 			background-repeat: no-repeat;
-			overflow: hidden;
 		}
 		.page.frame.vertical {
 			background-size: auto 100%;
@@ -31,27 +30,50 @@
 			background-size: cover;
 		}
 		.page.frame > div.content {
-			margin-top: 15%;
+			margin-top: 20%;
 			margin-left: 10%;
 			width: 35%;
 			text-align: right;
+			background-color: rgba(0,0,0,.3);
+		}
+		.page.frame:not(.first) > div.content {
+			padding: 30px;
 		}
 		.page.frame > div.content > h1 {
+			font-size: 300%;
 			margin: 0px;
 		}
-		.page.frame > div.content > blockquote, .page.frame > div.content > p {
-
+		.page.frame:not(.first) > div.content > h1 {
+			float: right;
+			padding-left: 20px;
+			margin-bottom: 20px;
+		}
+		.page.frame:not(.first) > div.content > p {
+			text-align: right;
+		}
+		.page.frame:not(.first) > div.content > div.image.list ul {
+			margin: 0px;
+			padding: 0px;
+			white-space: nowrap;
+			overflow-y: hidden;
+		}
+		.page.frame > div.content > div.image.list ul li {
+			display: inline-block;
 		}
 		.page.frame.first > div.content {
+			margin-top: 20%;
+			margin-left: 15%;
 			width: 45%;
+			background-color: transparent;
 		}
 		.page.frame.first > div.content > blockquote {
 			width: 50%;
-			margin-right: 0px;
+			margin-left: auto;
+			margin-right: 0;
 		}
 		.page.frame.first h1 {
-			font-size: 87pt;
-			line-height: 75pt;
+			font-size: 600%;
+			line-height: 80%;
 		}
 		nav {
 			margin: 0.01em;
@@ -66,7 +88,7 @@
 		}
 		nav > ul > li > a {
 			display: inline-block;
-			background-color: white;
+			background-color: rgba(255,255,255,0.5);
 			color: black;
 			text-decoration: none;
 			font-variant: small-caps;
@@ -108,6 +130,7 @@
 				<li><a href="/c/mayotte">Mayotte</a></li>
 				<li><a href="/c/bretagne">Bretagne</a></li>
 				<li><a href="/c/camargue">Camargue</a></li>
+				<li><a href="/c/about">À propos</a></li>
 			</ul>
 		</nav>
 		<section class="page frame first vertical" data-image="http://i.imgur.com/ia20r9p.jpg" data-agv="000000" id="home">
@@ -120,11 +143,17 @@
 			<div class="content">
 				<h1>Oiseaux</h1>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				tempor incididunt ut labore et dolore magna aliqua.</p>
+				<div class="image list">
+					<ul>
+						<li><img src="http://i.imgur.com/WCedJ3L.jpg" alt="Alouette des champs" height="100" /></li>
+						<li><img src="http://i.imgur.com/hm6yNUJ.jpg" alt="Bécassaux variables" height="100" /></li>
+						<li><img src="http://i.imgur.com/q8gujuV.jpg" alt="Bergeronnette des ruissaux" height="100" /></li>
+						<li><img src="http://i.imgur.com/9VAlajZ.jpg" alt="Bouvreuil pivoine" height="100" /></li>
+						<li><img src="http://i.imgur.com/8KIZ33N.jpg" alt="Chevallier guignette" height="100" /></li>
+						<li><img src="http://i.imgur.com/DggKg5O.jpg" alt="Cygne tuberculé" height="100" /></li>
+					</ul>
+				</div>
 			</div>
 		</section>
 		<script type="text/javascript">
@@ -147,7 +176,7 @@
 				window.scrollTo(0,current);
 				if (Math.abs(max-current) > 50) {
 					a = (current < max)?1:(-1);
-					setTimeout(scrollTo, 1, current+80*a, max);
+					setTimeout(scrollTo, 2, current+80*a, max);
 				}
 				else {
 					window.scrollTo(0, max);
